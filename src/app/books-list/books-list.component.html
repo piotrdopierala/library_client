@@ -1,9 +1,9 @@
-<!-- <p>
-  books-list works!
-</p> -->
-<p>
-Biblioteka posiada definicje następujących książek:
-</p>
-<ul class="list-group">
-  <li class="list-group-item" *ngFor="let l of booksDefinitions">{{l.id}}, {{l.title}}</li>
-</ul>
+<side-menu></side-menu>
+<div id="content-wrapper">
+  <p>
+    Biblioteka posiada definicje następujących książek:
+  </p>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let l of booksDefinitions">{{l.id}}, {{l.title}}</li>
+  </ul>
+</div>
