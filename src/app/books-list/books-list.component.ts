@@ -6,7 +6,7 @@ import { Book } from 'app/models/book';
 @Component({
   selector: 'books-list',
   templateUrl: './books-list.component.html',
-  styleUrls: ['./books-list.component.css']
+  styleUrls: ['./books-list.component.less']
 })
 export class BooksListComponent implements OnInit {
 
