@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { BooksListComponent } from './books-list/books-list.component';
 import { BooksService } from './books-service.service';
 import { SideMenuComponent } from './side-menu/side-menu.component';
+import { TopBarComponent } from './top-bar/top-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BooksListComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    TopBarComponent
   ],
   imports: [
     BrowserModule,
