@@ -1,9 +1,19 @@
-<side-menu></side-menu>
-<div id="content-wrapper">
-  <p>
-    Biblioteka posiada definicje następujących książek:
-  </p>
-  <ul class="list-group">
-    <li class="list-group-item" *ngFor="let l of booksDefinitions">{{l.id}}, {{l.title}}</li>
-  </ul>
+<h2>
+  Lista książek w bibliotece:
+</h2>
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Tytuł</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let l of booksDefinitions">
+        <td>{{l.id}}</td>
+        <td>{{l.title}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
