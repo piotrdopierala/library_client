@@ -7,12 +7,16 @@
       <tr>
         <th>Id</th>
         <th>Tytuł</th>
+        <th>Autorzy</th>
+        <th>Kategoria</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let l of booksDefinitions">
         <td>{{l.id}}</td>
         <td>{{l.title}}</td>
+        <td>Autorzy</td>
+        <td><span *ngFor="let cat of l.categories" class="badge badge-pill badge-secondary mr-1">{{cat}}</span></td>
       </tr>
     </tbody>
   </table>
