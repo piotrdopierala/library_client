@@ -9,13 +9,17 @@ import { BooksListComponent } from './books-list/books-list.component';
 import { BooksService } from './books-service.service';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
+import { LibraryRoutingModule } from './library-routing.module';
+import { BookDetailsComponent } from './book-details/book-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BooksListComponent,
     SideMenuComponent,
-    TopBarComponent
+    TopBarComponent,
+    LibraryRoutingModuleModule,
+    BookDetailsComponent
   ],
   imports: [
     BrowserModule,

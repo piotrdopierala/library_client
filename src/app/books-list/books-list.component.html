@@ -12,11 +12,19 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let l of booksDefinitions">
-        <td>{{l.id}}</td>
-        <td>{{l.title}}</td>
-        <td>Autorzy</td>
-        <td><span *ngFor="let cat of l.categories" class="badge badge-pill badge-secondary mr-1">{{cat}}</span></td>
+      <tr *ngFor="let bookDef of booksDefinitions" (click)="goToBookDetails(bookDef)">
+        <td>{{bookDef.id}}</td>
+        <td>{{bookDef.title}}</td>
+        <td>
+          <ng-container *ngFor="let auth of bookDef.authors">
+            <span *ngFor="let firstName of auth.firstNames">
+              {{firstName}}
+            </span>
+            {{auth.lastName}}
+            <br>
+          </ng-container>
+        </td>
+        <td><span *ngFor="let cat of bookDef.categories" class="badge badge-pill badge-secondary mr-1">{{cat}}</span></td>
       </tr>
     </tbody>
   </table>
