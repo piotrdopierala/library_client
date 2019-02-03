@@ -18,13 +18,14 @@ import { BookDetailsComponent } from './book-details/book-details.component';
     BooksListComponent,
     SideMenuComponent,
     TopBarComponent,
-    LibraryRoutingModuleModule,
+    //LibraryRoutingModule,
     BookDetailsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     //HttpModule,
+    LibraryRoutingModule,
     HttpClientModule
   ],
   providers: [BooksService],
