@@ -5,8 +5,7 @@ import { Book, Author } from './models/book';
 
 @Injectable()
 export class BooksService {
-
-  private bookDefinitionsURL = 'http://localhost:8080/Books';
+  private booksApiURL = 'http://localhost:8080/';
 
   constructor(private http: HttpClient) { }
 
@@ -15,7 +14,19 @@ export class BooksService {
   }
 
   getBookDefinitions() {
-    return this.http.get<Object[]>(this.bookDefinitionsURL);
+    return this.http.get<Object[]>(this.booksApiURL+'Books');
+  }
+
+  getSingleBookDefinition(id:number): Observable<Object> {
+    return this.http.get<Object>(this.booksApiURL+'Book/'+`${id}`);
+  }
+
+  showSingleBookDefinition(id:number): Book {
+    var book: Book = new Book();
+    this.getSingleBookDefinition(id).subscribe(rawBookData=>{
+        book.title=rawBookData['title'];
+    });
+    return book;
   }
 
   showBookDefinitions(): Array<Book> {
