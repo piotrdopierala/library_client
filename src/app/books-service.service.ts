@@ -14,17 +14,27 @@ export class BooksService {
   }
 
   getBookDefinitions() {
-    return this.http.get<Object[]>(this.booksApiURL+'Books');
+    return this.http.get<Object[]>(this.booksApiURL + 'Books');
   }
 
-  getSingleBookDefinition(id:number): Observable<Object> {
-    return this.http.get<Object>(this.booksApiURL+'Book/'+`${id}`);
+  getSingleBookDefinition(id: number): Observable<Object> {
+    return this.http.get<Object>(this.booksApiURL + 'Book/' + `${id}`);
   }
 
-  showSingleBookDefinition(id:number): Book {
+  showSingleBookDefinition(id: number): Book {
     var book: Book = new Book();
-    this.getSingleBookDefinition(id).subscribe(rawBookData=>{
-        book.title=rawBookData['title'];
+    this.getSingleBookDefinition(id).subscribe(rawBookData => {
+      book.title = rawBookData['title'];
+      book.id = rawBookData['id'];
+      book.isbn = rawBookData['isbn'];
+      book.pageCount = rawBookData['pageCount'];
+      //book.publishedDate = new Date()
+      book.thumbnailUrl = rawBookData['thumbnailUrl']
+      book.authors = rawBookData['authors'].map(rawAuthor => {
+        return this.parseAuthor(rawAuthor);
+      });
+      book.categories = rawBookData['categories'];
+      book.shortDescription = rawBookData['shortDescription'];
     });
     return book;
   }
@@ -36,6 +46,10 @@ export class BooksService {
       var book: Book = new Book();
       book.title = rawBookData['title'];
       book.id = rawBookData['id'];
+      book.isbn = rawBookData['isbn'];
+      book.pageCount = rawBookData['pageCount'];
+      //book.publishedDate = new Date()
+      book.thumbnailUrl = rawBookData['thumbnailUrl'];
       book.authors = rawBookData['authors'].map(rawAuthor => {
         return this.parseAuthor(rawAuthor);
       });
@@ -48,8 +62,8 @@ export class BooksService {
 
   private parseAuthor(rawAuthor): Author {
     var author: Author = new Author();
-    author.firstNames='firstNames' in rawAuthor ? rawAuthor['firstNames'].split(" "): '';
-    author.lastName='lastName' in rawAuthor ? rawAuthor['lastName']:'';    
+    author.firstNames = 'firstNames' in rawAuthor ? rawAuthor['firstNames'].split(" ") : '';
+    author.lastName = 'lastName' in rawAuthor ? rawAuthor['lastName'] : '';
     return author;
   }
 

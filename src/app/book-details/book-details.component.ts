@@ -20,6 +20,7 @@ export class BookDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.bookData=this.booksService.showSingleBookDefinition(this.id);
+    console.log(this.bookData);
   }
 
 }
