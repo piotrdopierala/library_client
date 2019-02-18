@@ -11,6 +11,7 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { LibraryRoutingModule } from './library-routing.module';
 import { BookDetailsComponent } from './book-details/book-details.component';
+import { BookCopiesComponent } from './book-copies/book-copies.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { BookDetailsComponent } from './book-details/book-details.component';
     SideMenuComponent,
     TopBarComponent,
     //LibraryRoutingModule,
-    BookDetailsComponent
+    BookDetailsComponent,
+    BookCopiesComponent
   ],
   imports: [
     BrowserModule,

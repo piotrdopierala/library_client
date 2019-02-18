@@ -21,6 +21,10 @@ export class BooksService {
     return this.http.get<Object>(this.booksApiURL + 'Book/' + `${id}`);
   }
 
+  getSingleBookCopies(id: number): Observable<Object> {
+    return this.http.get<Object>(this.booksApiURL + 'BookCopies/' + `${id}`)
+  }
+
   showSingleBookDefinition(id: number): Book {
     var book: Book = new Book();
     this.getSingleBookDefinition(id).subscribe(rawBookData => {
@@ -28,9 +32,9 @@ export class BooksService {
       book.id = rawBookData['id'];
       book.isbn = rawBookData['isbn'];
       book.pageCount = rawBookData['pageCount'];
-      var publishedDate:Date = new Date();
+      var publishedDate: Date = new Date();
       publishedDate.setFullYear(rawBookData['publishedDate'][0]);
-      publishedDate.setMonth(rawBookData['publishedDate'][1]-1);
+      publishedDate.setMonth(rawBookData['publishedDate'][1] - 1);
       publishedDate.setDate(rawBookData['publishedDate'][2]);
       console.log(publishedDate.getDate());
       book.publishedDate = publishedDate;
@@ -42,6 +46,10 @@ export class BooksService {
       book.shortDescription = rawBookData['shortDescription'];
     });
     return book;
+  }
+
+  showSingleBookCopies(id: number): Book {
+    return null;
   }
 
   showBookDefinitions(): Array<Book> {
