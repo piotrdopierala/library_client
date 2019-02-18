@@ -28,7 +28,12 @@ export class BooksService {
       book.id = rawBookData['id'];
       book.isbn = rawBookData['isbn'];
       book.pageCount = rawBookData['pageCount'];
-      //book.publishedDate = new Date()
+      var publishedDate:Date = new Date();
+      publishedDate.setFullYear(rawBookData['publishedDate'][0]);
+      publishedDate.setMonth(rawBookData['publishedDate'][1]-1);
+      publishedDate.setDate(rawBookData['publishedDate'][2]);
+      console.log(publishedDate.getDate());
+      book.publishedDate = publishedDate;
       book.thumbnailUrl = rawBookData['thumbnailUrl']
       book.authors = rawBookData['authors'].map(rawAuthor => {
         return this.parseAuthor(rawAuthor);

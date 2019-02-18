@@ -1,7 +1,27 @@
 <div style="padding-top: 60px;" class="media">
-  <img src="{{bookData.thumbnailUrl}}" class="mr-3" alt="Miniaturka okładki">
+  <img src="{{bookData.thumbnailUrl}}" class="img-fluid mr-3" style="height: 600%;" alt="Miniaturka okładki">
   <div class="media-body">
       <h5 class="mt-0">{{bookData.title}}</h5>
+      <span *ngFor="let author of bookData.authors">{{author.firstNames}} {{author.lastName}}<br></span>
+      <br>
+      <span *ngFor="let cat of bookData.categories" class="badge badge-pill badge-secondary mr-1">{{cat}}</span>
+      <div style="padding-top: 10px;">
       {{bookData.shortDescription}}
+      </div>
   </div>
 </div>
+<br>
+<table>
+    <tr>
+        <td>Published date</td>
+        <td>{{bookData.publishedDate | date:'yyyy-MM-dd'}}</td>
+      </tr>
+  <tr>
+    <td>ISBN</td>
+    <td>{{bookData.isbn}}</td>
+  </tr>
+  <tr>
+    <td>Page count</td>
+    <td>{{bookData.pageCount}}</td>
+  </tr>
+</table>
