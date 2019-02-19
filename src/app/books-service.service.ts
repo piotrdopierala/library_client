@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { Book, Author } from './models/book';
+import { BookCopy } from './models/bookCopy';
 
 @Injectable()
 export class BooksService {
@@ -21,8 +22,8 @@ export class BooksService {
     return this.http.get<Object>(this.booksApiURL + 'Book/' + `${id}`);
   }
 
-  getSingleBookCopies(id: number): Observable<Object> {
-    return this.http.get<Object>(this.booksApiURL + 'BookCopies/' + `${id}`)
+  getSingleBookCopies(id: number): Observable<Object[]> {
+    return this.http.get<Object[]>(this.booksApiURL + 'BookCopies/' + `${id}`)
   }
 
   showSingleBookDefinition(id: number): Book {
@@ -36,7 +37,6 @@ export class BooksService {
       publishedDate.setFullYear(rawBookData['publishedDate'][0]);
       publishedDate.setMonth(rawBookData['publishedDate'][1] - 1);
       publishedDate.setDate(rawBookData['publishedDate'][2]);
-      console.log(publishedDate.getDate());
       book.publishedDate = publishedDate;
       book.thumbnailUrl = rawBookData['thumbnailUrl']
       book.authors = rawBookData['authors'].map(rawAuthor => {
@@ -48,7 +48,26 @@ export class BooksService {
     return book;
   }
 
-  showSingleBookCopies(id: number): Book {
+  showSingleBookCopies(id: number): BookCopy {
+    var bookCopies: BookCopy[]=new Array();
+    this.getSingleBookCopies(id).subscribe(rawBookCopiesData => {
+      rawBookCopiesData.forEach(rawBookCopyData => {
+        var bookCopy: BookCopy = new BookCopy();
+        bookCopy.id = rawBookCopyData['id'];
+        bookCopy.stateDescription = rawBookCopyData['physicalStateDescription'];
+        bookCopy.dateAddedToLibrary
+        var dateAddedToLibrary: Date = new Date();
+        dateAddedToLibrary.setFullYear(rawBookCopyData['dateAddedToLibrary'][0]);
+        dateAddedToLibrary.setMonth(rawBookCopyData['dateAddedToLibrary'][1] - 1);
+        dateAddedToLibrary.setDate(rawBookCopyData['dateAddedToLibrary'][2]);
+        dateAddedToLibrary.setHours(rawBookCopyData['dateAddedToLibrary'][3]);
+        dateAddedToLibrary.setMinutes(rawBookCopyData['dateAddedToLibrary'][4]);
+        bookCopy.dateAddedToLibrary = dateAddedToLibrary;
+        bookCopies.push(bookCopy);
+      });
+      
+    });
+    console.log(bookCopies);
     return null;
   }
 
